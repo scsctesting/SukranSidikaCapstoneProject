@@ -54,7 +54,7 @@ public class LoginPage extends BasePage {
         continueButton.click();
         password.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
 //        BrowserUtils.waitForPageToLoad(10);
-//        BrowserUtils.wait(3);
+
     }
 
     public void clickOnContinueButton() {
