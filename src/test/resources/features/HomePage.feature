@@ -3,23 +3,18 @@ Feature: HomePage
 
   Background: open login page
     Given user is on the login page
-    When user enters "email" email and "password" password
+    And user hover over and clicks on Sign-in area
+
 
   @TC_04
   Scenario: Verify that the specified fields are present on the home page
+    When user enters "email" email and "password" password
     Then user should verify the title of the page
-    Then user verifies that following areas are displayed:
-      | website logo       |
-      | username area      |
-      | search box         |
-      | Cart icon          |
-      | Returns and orders |
-
-#    Then user verifies that website logo is displayed
-#    Then user verifies that username area is displayed
-#    Then user verifies that search box is displayed
-#    Then user verifies that Cart icon is displayed
-#    Then user verifies that Returns and orders are displayed
+    Then user verifies that website logo is displayed
+    Then user verifies that username area is displayed
+    Then user verifies that search box is displayed
+    Then user verifies that Cart icon is displayed
+    Then user verifies that Returns and orders are displayed
 
   @TC_05
   Scenario: Verify the departments from the dropdown list

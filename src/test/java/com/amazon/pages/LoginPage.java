@@ -11,27 +11,26 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    //@FindBy(id = "//a[@id='nav-link-accountList']")
-    @FindBy(id = "//span[@id='nav-link-accountList-nav-line-1']")
+    @FindBy(xpath= "//div[@id='nav-tools']/a[2]")
     public WebElement signInArea;
 
     @FindBy(xpath = "//span[@class='nav-action-inner']")
     public WebElement signIn;
 
-
-    @FindBy(id = "//input[@id='ap_email']")
+    @FindBy(xpath = "//input[@id='ap_email']")
     public WebElement email;
 
-    @FindBy(id = "//input[@id='ap_password']")
+    @FindBy(xpath = "//input[@id='ap_password']")
     public WebElement password;
 
-    @FindBy(id = "//input[@id='continue']")
+    @FindBy(xpath = "//input[@id='continue']")
     public WebElement continueButton;
 
     @FindBy(id = "abc")
     public WebElement notNowButtonForPhoneRequest;
 
-    @FindBy(xpath = "//div[@class='a-alert-content']//li")
+   // @FindBy(xpath = "//div[@class='a-alert-content']//li")
+    @FindBy(xpath = "(//div[@class='a-alert-content'])[1]")
     public WebElement alertMessage;
 
 //-------------------------------------------
@@ -42,19 +41,18 @@ public class LoginPage extends BasePage {
     public void clickOnSignInArea() {
         Actions action = new Actions(driver);
         action.moveToElement(signInArea).perform();
-
         BrowserUtils.highlightAndRemoveWebElement(signIn);
         signIn.click();
-       // BrowserUtils.waitFor(3);
-        BrowserUtils.waitForPageToLoad(5);
     }
 
     public void login() {
         email.sendKeys(ConfigurationReader.getProperty("email"));
         continueButton.click();
         password.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
-//        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitFor(3);
+       // if(BrowserUtils.isElementPresent()){
 
+        //}
     }
 
     public void clickOnContinueButton() {
@@ -63,8 +61,8 @@ public class LoginPage extends BasePage {
 
 
     public void getAlertMessage() {
-        BrowserUtils.waitForVisibility(alertMessage, 10);
-        System.out.println("alert message: " + alertMessage);
+        BrowserUtils.waitForVisibility(alertMessage, 3);
+        System.out.println("alert message: " + alertMessage.getText());
         Assert.assertTrue(alertMessage.isDisplayed());
     }
 

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 public class Login_StepDefinitions {
     LoginPage loginPage=new LoginPage();
@@ -27,16 +28,16 @@ public class Login_StepDefinitions {
 
     @When("user enters {string} email and {string} password")
     public void user_enters_email_and_password(String string, String string2) {
-        System.out.printf("Login with email %s and %s password\n", string, string2);
         loginPage.login();
     }
+
     @Then("user should verify the title of the page")
     public void user_should_verify_the_title_of_the_page() {
-        BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.wait(2);
+        BrowserUtils.waitForPageToLoad(2);
+       // BrowserUtils.wait(2);
         String title=Driver.getDriver().getTitle();
         System.out.println("title: "+ title);
-        //Assert.assertTrue(title.equals(""));
+        Assert.assertTrue(title.equals("Amazon Sign-In"));
     }
 
 
@@ -50,6 +51,10 @@ public class Login_StepDefinitions {
 //        System.out.println("Verify that page title is: " + string);
 //        Assert.assertEquals(string, Driver.getDriver().getTitle());
 //    }
+//----------------------------------
+
+
+
 
 
     @Then("user clicks on Continue button")
@@ -74,7 +79,7 @@ public class Login_StepDefinitions {
 
     @When("user enters password as{}"  )
     public void user_enters_password_as(String password){
-        loginPage.password.sendKeys(password);
+        loginPage.password.sendKeys(password, Keys.ENTER);
     }
 
 }
