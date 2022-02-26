@@ -3,11 +3,10 @@ Feature: HomePage
 
   Background: open login page
     Given user is on the login page
-    And user hover over and clicks on Sign-in area
-
 
   @TC_04
   Scenario: Verify that the specified fields are present on the home page
+    And user hover over and clicks on Sign-in area
     When user enters "email" email and "password" password
     Then user should verify the title of the page
     Then user verifies that website logo is displayed
@@ -20,34 +19,35 @@ Feature: HomePage
   Scenario: Verify the departments from the dropdown list
     And user clicks on All in search box area
     And user gets the dropdown values
-    Then user verifies the departments
 
 
   @TC_06
-  Scenario: Verify the selected department is highlighted.
+  Scenario Outline: Verify the selected department is highlighted.
     And user clicks on All in search box area
-    And user gets a random department from the dropdown list
-    Then user verifies the selected department/category name
+    And user gets department as "<department>" from the dropdown list
+    Then user verifies the selected department name
+    Examples:
+      | department |
+      | Books      |
 
 
   @TC_07
   Scenario Outline: Verify the total count and best seller options are displayed.
-
-    When user enters book type as "<books>" in search box and press search button
+    When user enters item as "<item>" in search box and press search button
     Then user verifies that total count of products is displayed on the search result page
     Then user verifies that best seller options are displayed
 
     Examples:
-      | books      |
+      | item      |
       | Kids books |
 
   @TC_08
   Scenario Outline: Verify that filtering works correctly.
-    When user enters book type as "<books>" in search box and press search button
+    When user enters item as "<item>" in search box and press search button
     And user verifies that options for filter are displayed
-    And user selects the book type
-    Then user verifies the total results of the product of the chosen type
+    And user selects the book type option as "<bookType>"
+    Then user verifies the selected book type
 
     Examples:
-      | books      |
-      | Kids books |
+      | item      | bookType      |
+      | Kids books | Chapter Books |

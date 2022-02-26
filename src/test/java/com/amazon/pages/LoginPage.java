@@ -33,6 +33,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "(//div[@class='a-alert-content'])[1]")
     public WebElement alertMessage;
 
+    @FindBy(xpath = "//a[@id='nav-item-signout']")
+    public WebElement signOut;
+
+
 //-------------------------------------------
     public void enterUrl() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -63,6 +67,7 @@ public class LoginPage extends BasePage {
     public void getAlertMessage() {
         BrowserUtils.waitForVisibility(alertMessage, 3);
         System.out.println("alert message: " + alertMessage.getText());
+        BrowserUtils.waitFor(2);
         Assert.assertTrue(alertMessage.isDisplayed());
     }
 
@@ -71,5 +76,10 @@ public class LoginPage extends BasePage {
         continueButton.click();
     }
 
-
+    public void clickOnSignOut() {
+        Actions action = new Actions(driver);
+        action.moveToElement(signInArea).perform();
+        BrowserUtils.highlightAndRemoveWebElement(signOut);
+        signOut.click();
+    }
 }

@@ -34,13 +34,15 @@ public class Login_StepDefinitions {
     @Then("user should verify the title of the page")
     public void user_should_verify_the_title_of_the_page() {
         BrowserUtils.waitForPageToLoad(2);
-       // BrowserUtils.wait(2);
         String title=Driver.getDriver().getTitle();
         System.out.println("title: "+ title);
-        Assert.assertTrue(title.equals("Amazon Sign-In"));
+        Assert.assertTrue(title.contains("Amazon.com. Spend less. Smile"));
     }
 
-
+    @Then("user should sign out")
+    public void user_should_sign_out() {
+        loginPage.clickOnSignOut();
+    }
 
 
     //----------------------------------------------

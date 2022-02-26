@@ -10,13 +10,13 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         dryRun = false,
         publish = true,
-        tags = "@Login",
+        tags = "@TC_09",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber1.json",
                 "rerun:target/rerun.txt"
         }
-
 )
+
 public class CucumberRunner {
 }

@@ -2,6 +2,8 @@ package com.amazon.pages;
 
 import com.amazon.utilities.Driver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,6 +13,9 @@ public abstract class BasePage {
     public BasePage() {
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy(id = "twotabsearchtextbox")
+    public WebElement searchBoxInput;
 
 //    @FindBy(css = "abc")
 //    protected WebElement currentUser;
