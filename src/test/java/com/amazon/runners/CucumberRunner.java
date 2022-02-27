@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         dryRun = false,
         publish = true,
-        tags = "@TC_10",
+        tags = "@TC_13",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber1.json",

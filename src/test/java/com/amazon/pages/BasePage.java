@@ -22,6 +22,17 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[contains(text(),'Best Seller')]")
     public List<WebElement> bestSellerOptions;
 
+    @FindBy(xpath = "//div[@class='a-section aok-relative s-image-square-aspect']")
+    public List<WebElement> allOptions;
+
+    //@FindBy(xpath = "//span[@id='productTitle']")
+   //@FindBy(xpath = "//h1[@id='title']")
+   @FindBy(id="productTitle")
+    public List<WebElement> title;
+
+    @FindBy(xpath = "//div[@class='a-fixed-left-grid']//div/div/ul/li[1]")
+    public List<WebElement> titlesInShoppingCart;
+
 
 
 //    @FindBy(css = "abc")
