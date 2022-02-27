@@ -41,9 +41,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),' results for')]")
     public WebElement totalCountOfProducts;
 
-    @FindBy(xpath = "//span[contains(text(),'Best Seller')]")
-    public List<WebElement> bestSellerOptions;
-
     @FindBy(xpath = "//div[@id='filters']/div")
     public List<WebElement> filterOptions;
 
@@ -86,7 +83,7 @@ public class HomePage extends BasePage {
         Assert.assertEquals("Books", department);
     }
 
-    public void enterBookType(String expected) {
+    public void enterItemType(String expected) {
         searchBoxInput.sendKeys(expected, Keys.ENTER);
     }
 

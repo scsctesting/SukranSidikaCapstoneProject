@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public abstract class BasePage {
     protected WebDriver driver = Driver.getDriver();
     protected WebDriverWait wait = new WebDriverWait(driver, 25);
@@ -16,6 +18,11 @@ public abstract class BasePage {
 
     @FindBy(id = "twotabsearchtextbox")
     public WebElement searchBoxInput;
+
+    @FindBy(xpath = "//span[contains(text(),'Best Seller')]")
+    public List<WebElement> bestSellerOptions;
+
+
 
 //    @FindBy(css = "abc")
 //    protected WebElement currentUser;

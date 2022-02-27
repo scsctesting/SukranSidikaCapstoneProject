@@ -2,14 +2,10 @@ package com.amazon.step_definitions;
 
 import com.amazon.pages.HomePage;
 import com.amazon.utilities.BrowserUtils;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
-
-import java.util.List;
 
 public class HomePage_StepDefinitions {
     HomePage homePage = new HomePage();
@@ -72,7 +68,7 @@ public class HomePage_StepDefinitions {
 
     @When("user enters item as {string} in search box and press search button")
     public void user_enters_item_as_in_search_box_and_press_search_button(String string) {
-        homePage.enterBookType(string);
+        homePage.enterItemType(string);
     }
 
     @Then("user verifies that total count of products is displayed on the search result page")
