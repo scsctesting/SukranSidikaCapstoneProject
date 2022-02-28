@@ -33,16 +33,14 @@ public class Cart_StepDefinitions {
         cartPage.getCartMessage();
     }
 
-    @Then("user clicks on Go to Cart button")
-    public void user_clicks_on_go_to_cart_button() {
-        BrowserUtils.waitForVisibility(cartPage.goToCartButton, 5);
-        BrowserUtils.waitForClickability(cartPage.goToCartButton, 5);
-        cartPage.goToCartButton.click();
+    @Then("user clicks on Cart button")
+    public void user_clicks_on_Cart_button() {
+        cartPage.cartIcon.click();
     }
 
-    @Then("user verifies that the added books are displayed")
-    public void user_verifies_that_the_added_books_are_displayed() {
-        cartPage.getItemsTitles();
+    @Then("user verifies that the added items are displayed")
+    public void user_verifies_that_the_added_items_are_displayed() {
+       cartPage.getItemsTitles();
     }
 
     @Then("user clears the search box")
@@ -61,5 +59,24 @@ public class Cart_StepDefinitions {
     @Then("user verifies the shopping cart message as {string}")
     public void user_verifies_the_shopping_cart_message_as(String string) {
         cartPage.getShoppingCartMessage();
+    }
+
+    @When("user selects quantity as {string} from quantity dropdown")
+    public void user_selects_quantity_as_from_quantity_dropdown(String string) {
+        cartPage.selectQuantity(string);
+    }
+
+    @Then("user verifies quantity as {string} of the item")
+    public void user_verifies_quantity_as_of_the_item(String string) {
+        cartPage.verifyQuantity(string);
+    }
+
+    @Then("user deletes the first item in the Cart")
+    public void user_deletes_the_first_item_in_the_cart() {
+        cartPage.deleteFirstItemInTheCart();
+    }
+    @Then("user verifies that item count is decreased")
+    public void user_verifies_that_item_count_is_decreased() {
+        cartPage.verifyCountDecreased();
     }
 }

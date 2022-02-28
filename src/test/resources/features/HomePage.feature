@@ -6,8 +6,6 @@ Feature: HomePage
 
   @TC_04
   Scenario: Verify that the specified fields are present on the home page
-    And user hover over and clicks on Sign-in area
-    When user enters "email" email and "password" password
     Then user should verify the title of the page
     Then user verifies that website logo is displayed
     Then user verifies that username area is displayed
@@ -45,7 +43,7 @@ Feature: HomePage
   Scenario Outline: Verify that filtering works correctly.
     When user enters item as "<item>" in search box and press search button
     And user verifies that options for filter are displayed
-    And user selects the book type option as "<bookType>"
+    And user selects the item type option as "<bookType>"
     Then user verifies the selected book type
 
     Examples:

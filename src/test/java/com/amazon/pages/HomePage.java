@@ -24,8 +24,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "nav-search-submit-button")
     public WebElement searchSubmitButton;
 
-    @FindBy(xpath = "//div[@id='nav-tools']//a[5]")
-    public WebElement cartIcon;
+
 
     @FindBy(xpath = "//div[@id='nav-tools']//a[4]")
     public WebElement returnsAndOrders;
@@ -96,7 +95,7 @@ public class HomePage extends BasePage {
 
     String bookType = "";
 
-    public void selectBookType(String book) {
+    public void selectItemType(String book) {
         BrowserUtils.waitForVisibilityList(bookTypeOptions, 2);
         for (int i = 1; i < bookTypeOptions.size(); i++) {
             String actual = bookTypeOptions.get(i).getText();
@@ -114,5 +113,8 @@ public class HomePage extends BasePage {
         System.out.println("Book type:" + bookType);
         Assert.assertEquals("Chapter Books", bookType);
     }
+
+
+
 
 }

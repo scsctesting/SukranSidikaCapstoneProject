@@ -36,7 +36,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//a[@id='nav-item-signout']")
     public WebElement signOut;
 
-
 //-------------------------------------------
     public void enterUrl() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -54,15 +53,11 @@ public class LoginPage extends BasePage {
         continueButton.click();
         password.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
         BrowserUtils.waitFor(3);
-       // if(BrowserUtils.isElementPresent()){
-
-        //}
     }
 
     public void clickOnContinueButton() {
         continueButton.click();
     }
-
 
     public void getAlertMessage() {
         BrowserUtils.waitForVisibility(alertMessage, 3);

@@ -25,15 +25,18 @@ public abstract class BasePage {
     @FindBy(xpath = "//div[@class='a-section aok-relative s-image-square-aspect']")
     public List<WebElement> allOptions;
 
-    //@FindBy(xpath = "//span[@id='productTitle']")
-   //@FindBy(xpath = "//h1[@id='title']")
+    //@FindBy(xpath = "//div[@id='nav-tools']//a[5]")
+    @FindBy(xpath = "//a[@id='nav-cart']")
+    public WebElement cartIcon;
+
    @FindBy(id="productTitle")
     public List<WebElement> title;
 
     @FindBy(xpath = "//div[@class='a-fixed-left-grid']//div/div/ul/li[1]")
     public List<WebElement> titlesInShoppingCart;
 
-
+    @FindBy(xpath = "//span[@data-action='delete']")
+    public List<WebElement> deleteButtonsInShoppingCart;
 
 //    @FindBy(css = "abc")
 //    protected WebElement currentUser;

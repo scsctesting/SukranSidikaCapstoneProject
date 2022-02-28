@@ -88,9 +88,9 @@ public class HomePage_StepDefinitions {
         Assert.assertTrue(homePage.filterOptions.size() > 0);
     }
 
-    @When("user selects the book type option as {string}")
-    public void user_selects_the_book_type_option_as(String string) {
-        homePage.selectBookType(string);
+    @When("user selects the item type option as {string}")
+    public void user_selects_the_item_type_option_as(String string) {
+        homePage.selectItemType(string);
     }
 
     @Then("user verifies the selected book type")
