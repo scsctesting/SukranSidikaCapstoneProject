@@ -12,4 +12,3 @@ Feature: Search
     Examples:
       | characters |
       | ab         |
-      | 12         |

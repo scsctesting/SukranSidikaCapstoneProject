@@ -40,7 +40,6 @@ Feature: Checkout
       | item            |
       | Socks for women |
 
-
   @TC_17
   Scenario Outline: Validate that  error message is displayed when the user enters invalid input in all the mandatory field on the Payment Page
     When user enters item as "<item>" in search box and press search button

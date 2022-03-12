@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         dryRun = false,
         publish = true,
         tags =// "@SmokeTest and not @ignore",
-                "@TC_17",
+        "@Cart",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber.json",
