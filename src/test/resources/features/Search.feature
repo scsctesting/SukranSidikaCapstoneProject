@@ -1,3 +1,4 @@
+@Search @RegressionTest
 Feature: Search
 
   Background: open login page

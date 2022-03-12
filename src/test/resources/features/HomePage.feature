@@ -1,4 +1,4 @@
-@HomePage
+@HomePage @RegressionTest
 Feature: HomePage
 
   Background: open login page

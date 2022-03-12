@@ -44,7 +44,9 @@ public class CheckoutPage extends BasePage{
     @FindBy(xpath = "//input[@name='ppw-widgetEvent:AddCreditCardEvent']")
     public WebElement errorMessage;
 
-
+    //@FindBy(xpath = "//div[@class='a-fixed-right-grid']")
+    @FindBy(xpath = "//div[@class='a-fixed-right-grid']/div/div/div/div/span")
+    public List<WebElement> paymentOptions;
 
     //-------------------------------------
 
@@ -56,5 +58,10 @@ public class CheckoutPage extends BasePage{
         Assert.assertTrue(paymentMethodPageTitle.isDisplayed());
     }
 
+    public void verifyPaymentOptions(){
+        for (int i = 0; i < paymentOptions.size(); i++) {
+            System.out.println(paymentOptions.get(i).getText());
+        }
+    }
 
 }

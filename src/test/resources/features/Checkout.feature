@@ -1,3 +1,4 @@
+@Checkout @RegressionTest
 Feature: Checkout
 
   Background: open login page
@@ -21,8 +22,6 @@ Feature: Checkout
       | item     |
       | journals |
 
-  #---------------------------------------------
-
   @TC_16
   Scenario Outline: Validate that  error message is displayed when the user enters invalid input in all the mandatory field on the Payment Page
     When user enters item as "<item>" in search box and press search button
@@ -45,10 +44,9 @@ Feature: Checkout
     Examples:
       | item        | number                                | errorMessage                                    |
       | Adult books | 1231 2312 3123 or 1231 2312 3123 1122 | There was a problem.Card number is not correct. |
-  #-----------------------------------
+
   @TC_17
   Scenario Outline: Validate payment method options
-
     When user enters item as "<item>" in search box and press search button
     And user clicks on the 4 star icon
     And user clicks on first option
@@ -59,8 +57,7 @@ Feature: Checkout
     And user clicks on Search button
     And user clicks on "Ship to This Address" button of first option
     Then user validates that user is navigated to next step "Select a payment method"
-    Then user should see following options as payment methods
-  #(Date table kullan)
+    Then user should see options for payment methods
 
     Examples:
       | item            |

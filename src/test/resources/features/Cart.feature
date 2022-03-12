@@ -1,4 +1,4 @@
-@Cart
+@Cart @RegressionTest
 Feature: Cart
 
   Background: open login page
