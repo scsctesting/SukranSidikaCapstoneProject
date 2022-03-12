@@ -1,5 +1,6 @@
 package com.amazon.pages;
 
+import com.amazon.utilities.BrowserUtils;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,10 +30,15 @@ public class CheckoutPage extends BasePage{
     @FindBy(xpath = "//h1")
     public WebElement paymentMethodPageTitle;
 
-    @FindBy(xpath = "//span[@id='apx-add-credit-card-action-test-id']")
+    //(//span[@class='a-button a-button-base apx-secure-registration-content-trigger-js'])[1]
+   // @FindBy(xpath = "//span[@id='apx-add-credit-card-action-test-id']")
+    //@FindBy(xpath = "//(//input[@class='a-button-input a-button-text'])[2]")
+   // @FindBy(xpath = "//div[@class='a-section pmts-add-credit-card-component-container']")
+    @FindBy(xpath = "//div[@class='a-section pmts-add-credit-card-component-container']/div/span")
     public WebElement addACreditCardButton;
 
-    @FindBy(xpath = "//input[@name='addCreditCardNumber']")
+    //@FindBy(xpath = "//input[@name='addCreditCardNumber']")
+    @FindBy(xpath = "(//input[@class='a-input-text a-form-normal'])[1]")
     public WebElement cardNumberInputBox;
 
     @FindBy(xpath = "//input[@name='ppw-accountHolderName']")
@@ -48,6 +54,9 @@ public class CheckoutPage extends BasePage{
     @FindBy(xpath = "//div[@class='a-fixed-right-grid']/div/div/div/div/span")
     public List<WebElement> paymentOptions;
 
+    @FindBy(xpath = "//div[@class='a-popover a-popover-modal a-declarative']")
+    public WebElement cardPopup;
+
     //-------------------------------------
 
     public void clickFirstShipToThisAddress(){
@@ -55,6 +64,7 @@ public class CheckoutPage extends BasePage{
     }
 
     public void verifyPaymentMethodPage(){
+        System.out.println("page title:"+paymentMethodPageTitle.getText());
         Assert.assertTrue(paymentMethodPageTitle.isDisplayed());
     }
 
@@ -63,5 +73,14 @@ public class CheckoutPage extends BasePage{
             System.out.println(paymentOptions.get(i).getText());
         }
     }
+
+    public void clickOnAddCreditCardButton(){
+        BrowserUtils.waitForVisibility(addACreditCardButton,3);
+        BrowserUtils.isElementPresent(addACreditCardButton);
+        BrowserUtils.highlightAndRemoveWebElement(addACreditCardButton);
+        addACreditCardButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
 
 }

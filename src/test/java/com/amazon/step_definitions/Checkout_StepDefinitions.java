@@ -1,6 +1,7 @@
 package com.amazon.step_definitions;
 
 import com.amazon.pages.CheckoutPage;
+import com.amazon.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -46,12 +47,12 @@ public class Checkout_StepDefinitions {
 
     @Then("user clicks on Add a credit cart or debit card link")
     public void user_clicks_on_add_a_credit_cart_or_debit_card_link() {
-        checkoutPage.addACreditCardButton.click();
+        checkoutPage.clickOnAddCreditCardButton();
     }
 
-    @Then("user adds credit cart number into the box as {string}")
-    public void user_adds_credit_cart_number_into_the_box_as(String string) {
-        checkoutPage.cardNumberInputBox.sendKeys(string);
+    @Then("user adds credit cart number into the card number input box")
+    public void user_adds_credit_cart_number_into_the_card_number_input_box(){
+        checkoutPage.cardNumberInputBox.sendKeys("1231 2312 3123 1122");
     }
 
     @Then("user adds name into the name on the card input box")
@@ -77,6 +78,11 @@ public class Checkout_StepDefinitions {
     @Then("user should see options for payment methods")
     public void user_should_see_options_for_payment_methods() {
         checkoutPage.verifyPaymentOptions();
+    }
+
+    @Then("user verifies card pop up is displayed")
+    public void user_verifies_card_pop_up_is_displayed() {
+    checkoutPage.cardPopup.isDisplayed();
     }
 
 }
