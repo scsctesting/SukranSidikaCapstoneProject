@@ -47,15 +47,6 @@ public class CartPage extends BasePage{
         Assert.assertTrue(cartMessage.isDisplayed());
     }
 
-public void clickFirstOption(){
-    for (int i = 0; i <allOptions.size() ; i++) {
-        BrowserUtils.highlightAndRemoveWebElement(allOptions.get(i));
-        allOptions.get(i).click();
-        System.out.println("first: "+title.get(0).getText());
-        break;
-    }
-}
-
 public void verifyNumberOfStars(){
    BrowserUtils.highlightAndRemoveWebElement(numberOfTheStars);
    Assert.assertTrue(numberOfTheStars.isDisplayed());

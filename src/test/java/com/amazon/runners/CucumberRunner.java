@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         glue = "com/amazon/step_definitions",
         features = "src/test/resources",
-        dryRun = true,
+        dryRun = false,
         publish = true,
         tags =// "@SmokeTest and not @ignore",
                 " @TC_17",
