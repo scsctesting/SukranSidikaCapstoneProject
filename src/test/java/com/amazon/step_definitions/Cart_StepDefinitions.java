@@ -25,6 +25,7 @@ public class Cart_StepDefinitions {
 
     @Then("user clicks on Add to Cart")
     public void user_clicks_on_add_to_cart() {
+        BrowserUtils.waitFor(2);
         cartPage.addToCartButton.click();
     }
 

@@ -68,9 +68,9 @@ public void verifyNumberOfStars(){
     }
 
     public void getShoppingCartMessage() {
-        BrowserUtils.waitForVisibility(shoppingCartMessage,5);
-        System.out.println("shoppingCartMessage: " + shoppingCartMessage.getText());
         BrowserUtils.waitFor(2);
+        BrowserUtils.waitForVisibility(shoppingCartMessage,10);
+        System.out.println("shoppingCartMessage: " + shoppingCartMessage.getText());
         Assert.assertTrue(shoppingCartMessage.isDisplayed());
     }
 
@@ -98,6 +98,7 @@ public void verifyNumberOfStars(){
     int countBefore;
     int countAfter;
     public void deleteFirstItemInTheCart(){
+        BrowserUtils.waitForVisibilityList(deleteButtonsInShoppingCart,5);
         for (int i = 0; i < deleteButtonsInShoppingCart.size(); i++) {
             countBefore=titlesInShoppingCart.size();
             System.out.println("countBefore delete: "+countBefore);
@@ -111,6 +112,7 @@ public void verifyNumberOfStars(){
     }
 
     public void verifyCountDecreased(){
+        BrowserUtils.waitFor(2);
         Assert.assertTrue(countBefore>countAfter);
     }
 

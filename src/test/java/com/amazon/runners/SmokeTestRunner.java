@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
         glue = "com/amazon/step_definitions",
         features = "src/test/resources",
         dryRun = false,
-        tags = "@smoke_test",
+        tags ="@smoke_test",
         plugin = {
                 "html:target/smoke_test_default-report",
-                "json:target/cucumber1.json",
+                "json:target/cucumber_smoke.json",
                 "rerun:target/rerun.txt"
         }
 

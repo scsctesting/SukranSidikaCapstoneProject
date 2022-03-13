@@ -1,6 +1,7 @@
 package com.amazon.step_definitions;
 
 import com.amazon.pages.SearchPage;
+import com.amazon.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -15,6 +16,7 @@ public class Search_StepDefinitions {
 
     @Then("user verifies that product suggestions are displayed")
     public void user_verifies_that_product_suggestions_are_displayed() {
+        BrowserUtils.waitForVisibilityList(searchPage.suggestionsFromSearchDropdown,10);
         System.out.println("size of dropdown suggestions: " + searchPage.suggestionsFromSearchDropdown.size());
         Assert.assertTrue(searchPage.suggestionsFromSearchDropdown.size() > 0);
     }

@@ -4,7 +4,7 @@ Feature: HomePage
   Background: open login page
     Given user is on the login page
 
-  @TC_04
+  @TC_04 @smoke_test
   Scenario: Verify that the specified fields are present on the home page
     Then user should verify the title of the page
     Then user verifies that website logo is displayed

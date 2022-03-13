@@ -4,7 +4,7 @@ Feature: Cart
   Background: open login page
     Given user is on the login page
 
-  @TC_10
+  @TC_10 @smoke_test
   Scenario Outline: Verify adding to cart is working as expected
     When user enters item as "<item>" in search box and press search button
     Then user verifies that best seller options are displayed
@@ -34,8 +34,8 @@ Feature: Cart
     Then user verifies that the added items are displayed
 
     Examples:
-      | item        | message       | item2    |
-      | Adult books | Added to Cart | journals |
+      | item        | message       | item2      |
+      | Adult books | Added to Cart | Kids books |
 
   @TC_12
   Scenario Outline: Verify that user can add the same item to their cart more than once.
@@ -80,5 +80,5 @@ Feature: Cart
     Then user verifies that item count is decreased
 
     Examples:
-      | item       | item2      |
+      | item       | item2       |
       | Kids books | Adult books |

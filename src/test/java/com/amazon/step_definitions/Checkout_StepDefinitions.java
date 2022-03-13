@@ -2,6 +2,7 @@ package com.amazon.step_definitions;
 
 import com.amazon.pages.CheckoutPage;
 import com.amazon.utilities.BrowserUtils;
+import com.amazon.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -27,7 +28,7 @@ public class Checkout_StepDefinitions {
 
     @When("user enters zip code into the zip code area")
     public void user_enters_zip_code_into_the_zip_code_area() {
-        checkoutPage.zipInputBox.sendKeys("30096", Keys.ENTER);
+        checkoutPage.zipInputBox.sendKeys("30097", Keys.ENTER);
     }
 
     @When("user clicks on Search button")
@@ -52,17 +53,17 @@ public class Checkout_StepDefinitions {
 
     @Then("user adds credit cart number into the card number input box")
     public void user_adds_credit_cart_number_into_the_card_number_input_box(){
+
+        //Driver.getDriver().switchTo().frame("pp-wwTFYc-69");
+        Driver.getDriver().switchTo().frame(0);
         checkoutPage.cardNumberInputBox.sendKeys("1231 2312 3123 1122");
+        BrowserUtils.waitFor(1);
     }
 
     @Then("user adds name into the name on the card input box")
     public void user_adds_name_into_the_name_on_the_card_input_box() {
         checkoutPage.nameOnCardInputBox.sendKeys("Jack James");
-    }
-
-    @Then("user selects month and year from the drop down box")
-    public void user_selects_month_and_year_from_the_drop_down_box() {
-
+        BrowserUtils.waitFor(1);
     }
 
     @Then("user clicks on Add your card button")
@@ -78,11 +79,6 @@ public class Checkout_StepDefinitions {
     @Then("user should see options for payment methods")
     public void user_should_see_options_for_payment_methods() {
         checkoutPage.verifyPaymentOptions();
-    }
-
-    @Then("user verifies card pop up is displayed")
-    public void user_verifies_card_pop_up_is_displayed() {
-    checkoutPage.cardPopup.isDisplayed();
     }
 
 }

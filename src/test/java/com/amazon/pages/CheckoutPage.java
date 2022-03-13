@@ -54,9 +54,6 @@ public class CheckoutPage extends BasePage{
     @FindBy(xpath = "//div[@class='a-fixed-right-grid']/div/div/div/div/span")
     public List<WebElement> paymentOptions;
 
-    @FindBy(xpath = "//div[@class='a-popover a-popover-modal a-declarative']")
-    public WebElement cardPopup;
-
     //-------------------------------------
 
     public void clickFirstShipToThisAddress(){
@@ -75,11 +72,11 @@ public class CheckoutPage extends BasePage{
     }
 
     public void clickOnAddCreditCardButton(){
-        BrowserUtils.waitForVisibility(addACreditCardButton,3);
+        BrowserUtils.waitFor(1);
+        BrowserUtils.waitForVisibility(addACreditCardButton,10);
         BrowserUtils.isElementPresent(addACreditCardButton);
         BrowserUtils.highlightAndRemoveWebElement(addACreditCardButton);
         addACreditCardButton.click();
-        BrowserUtils.waitFor(2);
     }
 
 

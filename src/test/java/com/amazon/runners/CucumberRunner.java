@@ -10,8 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         dryRun = false,
         publish = true,
-        tags =// "@SmokeTest and not @ignore",
-        "@Cart",
+        tags ="@SmokeTest and not @ignore",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber.json",

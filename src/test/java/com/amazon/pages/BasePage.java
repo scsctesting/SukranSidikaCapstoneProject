@@ -23,8 +23,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[contains(text(),'Best Seller')]")
     public List<WebElement> bestSellerOptions;
 
-    //@FindBy(xpath = "//div[@class='a-section aok-relative s-image-square-aspect']")
-    @FindBy(xpath = "//div[starts-with(@class,'a-section aok-relative s-image-')]")
+    @FindBy(xpath = "//div[@class='a-section aok-relative s-image-square-aspect']")
+   // @FindBy(xpath = "//div[starts-with(@class,'a-section aok-relative s-image-')]")
     public List<WebElement> allOptions;
 
     //@FindBy(xpath = "//div[@id='nav-tools']//a[5]")
@@ -50,8 +50,9 @@ public abstract class BasePage {
 //    }
 
     public void clickFirstOption(){
-        BrowserUtils.waitForVisibilityList(allOptions,5);
+        BrowserUtils.waitForPageToLoad(10);
         for (int i = 0; i <allOptions.size() ; i++) {
+            BrowserUtils.scrollToSpecificWebElement(allOptions.get(i));
             BrowserUtils.highlightAndRemoveWebElement(allOptions.get(i));
             allOptions.get(i).click();
             System.out.println("first option: "+title.get(0).getText());

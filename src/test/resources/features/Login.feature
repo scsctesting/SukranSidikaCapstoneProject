@@ -5,7 +5,7 @@ Feature: Login
     Given user is on the login page
     And user hover over and clicks on Sign-in area
 
-  @TC_01
+  @TC_01 @smoke_test
   Scenario: Verify the login of Amazon
     When user enters "email" email and "password" password
     Then user should verify the title of the page
