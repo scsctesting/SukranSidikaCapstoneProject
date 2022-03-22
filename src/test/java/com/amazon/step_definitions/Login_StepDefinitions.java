@@ -27,7 +27,6 @@ public class Login_StepDefinitions {
     @When("user enters {string} email and {string} password")
     public void user_enters_email_and_password(String string, String string2) {
         loginPage.login();
-        BrowserUtils.waitFor(20);
     }
 
     @Then("user should verify the title of the page")

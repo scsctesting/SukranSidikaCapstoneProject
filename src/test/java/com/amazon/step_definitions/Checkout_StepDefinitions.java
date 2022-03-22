@@ -18,6 +18,7 @@ public class Checkout_StepDefinitions {
 
     @When("user clicks on Proceed to checkout Button")
     public void user_clicks_on_proceed_to_checkout_button() {
+        BrowserUtils.waitFor(2);
         checkoutPage.proceedToCheckoutButton.click();
     }
 

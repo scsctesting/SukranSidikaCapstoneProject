@@ -5,6 +5,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chromium.ChromiumDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v97.network.Network;
+import org.openqa.selenium.devtools.v97.network.model.Request;
+import org.openqa.selenium.devtools.v97.network.model.Response;
+import org.openqa.selenium.devtools.v97.performance.Performance;
+import org.openqa.selenium.devtools.v97.performance.model.Metric;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,8 +19,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class BrowserUtils {
     public static void wait(int seconds) {
@@ -98,15 +106,6 @@ public class BrowserUtils {
         }
     }
 
-
-
-
-
-
-
-
-
-
     /**
      * @param name screenshot name
      * @return path to the screenshot
@@ -141,6 +140,54 @@ public class BrowserUtils {
         }
         return path;
     }
+//------------------------------------------------
 
+   static DevTools devTools=((ChromiumDriver)Driver.getDriver()).getDevTools();
+
+    static String pathConsole =System.getProperty("user.dir")+ File.separator+"target"+File.separator+"browserErrors.txt";
+    static String pathNetwork =System.getProperty("user.dir")+ File.separator+"target"+File.separator+"networkLogs.txt";
+    static String pathPerformance =System.getProperty("user.dir")+ File.separator+"target"+File.separator+"performance.txt";
+
+    //use this method to analyze logs of response status
+    public static void getNetworkLogs(){
+        devTools.addListener(Network.requestWillBeSent(), request->{
+            Request req=request.getRequest();
+            System.out.println(req.getUrl());
+        });
+        devTools.addListener(Network.responseReceived(), response->{
+            Response res=response.getResponse();
+            String resData="url: "+res.getUrl()+ ", status: "+res.getStatus();
+            System.out.println("network log: "+resData );
+            Driver.createLogs(resData, pathNetwork);
+            Driver.createLogs(" ", pathNetwork);
+        });
+    }
+
+   // ------------performance --------------
+
+    public static void createDevToolsSession(){
+        devTools.createSession();
+        devTools.send(Network.enable(Optional.empty(),Optional.empty(),Optional.empty()));
+        devTools.send(Performance.enable(Optional.empty()));
+
+    }
+//----------------------------
+
+    public static void performance(){
+        List<Metric> metrics = devTools.send(Performance.getMetrics());
+        List<String> metricNames= metrics.stream().map(o-> o.getName()).collect(Collectors.toList());
+
+        devTools.send(Performance.disable());
+
+        List<String> metricsToCheck = Arrays.asList(
+                "Timestamp", "Documents", "Frames", "JSEventListeners",
+                "LayoutObjects", "MediaKeySessions", "Nodes",
+                "Resources", "DomContentLoaded", "NavigationStart");
+
+        metricsToCheck.forEach( metric -> Driver.createLogs(metric +
+                " is : " + metrics.get(metricNames.indexOf(metric)).getValue(), pathPerformance));
+         Driver.createLogs("end of performance log",pathPerformance);
+         Driver.createLogs(" ",pathPerformance);
+    }
 
 }

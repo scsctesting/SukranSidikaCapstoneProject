@@ -19,8 +19,8 @@ Feature: Checkout
     And user clicks on "Ship to This Address" button of first option
     Then user validates that user is navigated to next step "Select a payment method"
     Examples:
-      | item     |
-      | journals |
+      | item       |
+      | Kids books |
 
   @TC_16
   Scenario Outline: Validate payment method options

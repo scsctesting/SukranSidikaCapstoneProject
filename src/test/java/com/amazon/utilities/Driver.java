@@ -4,16 +4,24 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
+
+import static com.amazon.utilities.BrowserUtils.pathConsole;
 
 public class Driver {
     //same for everyone
@@ -31,7 +39,7 @@ public class Driver {
      *
      * @return
      */
-    public synchronized static WebDriver createDriver() {
+    public synchronized static WebDriver getDriver() {
         //if webdriver object doesn't exist, create it
         if (driverPool.get() == null) {
             //specify browser type in configuration.properties file
@@ -92,18 +100,54 @@ public class Driver {
         return driverPool.get();
     }
 
-    public static WebDriver getDriver() {
-        if (driverPool.get() == null) {
-            createDriver();
-        }
-        return driverPool.get();
-    }
-
     public static void closeDriver() {
         if (driverPool != null) {
             driverPool.get().quit();
-            driverPool.set(null);
             driverPool.remove();
         }
     }
+
+    //------------------------------------------
+
+    public static void createLogs(String log, String path){
+        try {
+            File file = new File(path);
+            FileWriter fileWriter = new FileWriter(file, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            Scanner scan = new Scanner(file);
+            if (file.length() == 0) {
+                bufferedWriter.append(log);
+                bufferedWriter.newLine();
+                bufferedWriter.close();
+            } else {
+                boolean duplicate = false;
+                while (scan.hasNextLine()) {
+                    if (scan.nextLine().toString().equals(log)) {
+                        duplicate = true;
+                    }
+                }
+               // if (duplicate = false) {
+                {
+                    bufferedWriter.append(log);
+                    bufferedWriter.newLine();
+                    bufferedWriter.close();
+                }
+            }
+            scan.close();
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+   // ---------  browser errors ------------
+    public static void analyzeLogConsoleError(){
+        LogEntries logEntries=Driver.getDriver().manage().logs().get(LogType.BROWSER);
+        for (LogEntry entry:logEntries) {
+            String level = entry.getLevel().toString().trim();
+            String message = entry.getMessage().trim();
+            createLogs(level + ": " + message, pathConsole);
+        }
+        System.out.println("Browser warning has been captured!");
+    }
+
 }
